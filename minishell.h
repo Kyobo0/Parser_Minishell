@@ -6,7 +6,7 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 19:38:36 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:41:52 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:02:42 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ int		handle_word(char *line, int *i, t_token **tokens);
 
 int		ft_isspace(int c);
 char	*ft_strjoin_free(char *s1, char *s2);
+void	free_tokens(t_token *tokens);
+void	free_redirs(t_redir *redir);
+void	free_cmds(t_cmd *cmd);
 
 t_cmd	*parse_tokens(t_token *tokens);
 
-int	check_syntax(t_token *tokens);
+int		check_syntax(t_token *tokens);
 
 #endif

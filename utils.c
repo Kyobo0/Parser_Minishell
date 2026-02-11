@@ -6,7 +6,7 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:22:18 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:10:30 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:08:43 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,44 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (res);
+}
+
+void	free_tokens(t_token *tokens)
+{
+	t_token	*tmp;
+
+	while (tokens)
+	{
+		tmp = tokens->next;
+		free(tokens->value);
+		free(tokens);
+		tokens = tmp;
+	}
+}
+
+void	free_redirs(t_redir *redir)
+{
+	t_redir	*tmp;
+
+	while (redir)
+	{
+		tmp = redir->next;
+		free(redir);
+		redir = tmp;
+	}
+}
+
+void	free_cmds(t_cmd *cmd)
+{
+	t_cmd	*tmp;
+
+	while (cmd)
+	{
+		tmp = cmd->next;
+		if (cmd->argv)
+			free(cmd->argv);
+		free_redirs(cmd->redirs);
+		free(cmd);
+		cmd = tmp;
+	}
 }

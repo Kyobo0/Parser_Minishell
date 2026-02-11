@@ -6,7 +6,7 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:25:10 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:41:30 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:10:22 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,30 @@
 
 int	g_exit_status = 0;
 
-static void print_tokens(t_token *t)
-{
-    while (t)
-    {
-        if (t->type == TOKEN_WORD)
-            ft_printf("WORD(%s)\n", t->value);
-        else if (t->type == TOKEN_PIPE)
-            ft_printf("PIPE\n");
-        else if (t->type == TOKEN_REDIR_IN)
-            ft_printf("REDIR_IN\n");
-        else if (t->type == TOKEN_REDIR_OUT)
-            ft_printf("REDIR_OUT\n");
-        else if (t->type == TOKEN_REDIR_APPEND)
-            ft_printf("REDIR_APPEND\n");
-        else if (t->type == TOKEN_HEREDOC)
-            ft_printf("HEREDOC\n");
-        t = t->next;
-    }
-}
+// static void print_tokens(t_token *t)
+// {
+//     while (t)
+//     {
+//         if (t->type == TOKEN_WORD)
+//             ft_printf("WORD(%s)\n", t->value);
+//         else if (t->type == TOKEN_PIPE)
+//             ft_printf("PIPE\n");
+//         else if (t->type == TOKEN_REDIR_IN)
+//             ft_printf("REDIR_IN\n");
+//         else if (t->type == TOKEN_REDIR_OUT)
+//             ft_printf("REDIR_OUT\n");
+//         else if (t->type == TOKEN_REDIR_APPEND)
+//             ft_printf("REDIR_APPEND\n");
+//         else if (t->type == TOKEN_HEREDOC)
+//             ft_printf("HEREDOC\n");
+//         t = t->next;
+//     }
+// }
 
 static void	print_cmds(t_cmd *cmd)
 {
-	int	i;
+	t_redir	*tmp;
+	int		i;
 
 	while (cmd)
 	{
@@ -47,12 +48,12 @@ static void	print_cmds(t_cmd *cmd)
 			ft_printf("ARG: %s\n", cmd->argv[i]);
 			i++;
 		}
-		while (cmd->redirs)
+		tmp = cmd->redirs;
+		while (tmp)
 		{
 			ft_printf("REDIR type: %d target: %s\n",
-				cmd->redirs->type,
-				cmd->redirs->target);
-			cmd->redirs = cmd->redirs->next;
+				tmp->type, tmp->target);
+			tmp = tmp->next;
 		}
 		cmd = cmd->next;
 	}
@@ -69,12 +70,16 @@ int	main (int argc, char** argv)
 		return (1);
 	}
 	tokens = lexer(argv[1]);
-	print_tokens(tokens);
     if (!tokens)
 		return (1);
 	if (!check_syntax(tokens))
+    {
+        free_tokens(tokens);
 	    return (1);
+    }
     cmds = parse_tokens(tokens);
 	print_cmds(cmds);
+    free_cmds(cmds);
+    free_tokens(tokens);
 	return (0);
 }
