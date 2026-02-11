@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:40:42 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:13:28 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/11 18:50:45 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static char	*append_double_quoted(char *word, char *line, int *i)
 {
 	char	*tmp;
 	int		start;
+	int		plain_start;
 
 	start = ++(*i);
 	while (line[*i] && line[*i] != '"')
@@ -99,7 +100,12 @@ static char	*append_double_quoted(char *word, char *line, int *i)
 		if (tmp[start] == '$')
 			word = append_variable(word, tmp, &start);
 		else
-			word = append_plain(word, tmp, &start);
+		{
+			plain_start = start;
+			while (tmp[start] && tmp[start] != '$')
+				start++;
+			word = ft_strjoin_free(word, ft_substr(tmp, plain_start, start - plain_start));
+		}
 	}
 	free(tmp);
 	(*i)++;

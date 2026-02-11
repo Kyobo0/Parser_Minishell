@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 19:38:36 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 13:02:42 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/11 18:58:33 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define MINISHELL_H
 
 # include <stdlib.h>
-# include <stddef.h>
 # include <stdio.h>
+# include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # include "libft/libft.h"
 
 typedef enum e_token_type
@@ -80,5 +82,8 @@ void	free_cmds(t_cmd *cmd);
 t_cmd	*parse_tokens(t_token *tokens);
 
 int		check_syntax(t_token *tokens);
+
+void	sigint_handler(int sig);
+void	init_signals(void);
 
 #endif

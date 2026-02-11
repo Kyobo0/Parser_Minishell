@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:25:10 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 13:10:22 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:50:29 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,62 @@ static void	print_cmds(t_cmd *cmd)
 	}
 }
 
-int	main (int argc, char** argv)
+int	main(void)
 {
+	char	*line;
 	t_token	*tokens;
-    t_cmd	*cmds;
+	t_cmd	*cmds;
 
-	if (argc != 2)
+	init_signals();
+	while (1)
 	{
-		ft_printf("Usage: %s \"command\"\n", argv[0]);
-		return (1);
+		line = readline("minishell$ ");
+		if (!line)
+		{
+			ft_printf("exit\n");
+			break ;
+		}
+		if (*line)
+			add_history(line);
+		tokens = lexer(line);
+		if (tokens && check_syntax(tokens))
+		{
+			cmds = parse_tokens(tokens);
+			print_cmds(cmds);
+			free_cmds(cmds);
+		}
+		free_tokens(tokens);
+		free(line);
 	}
-	tokens = lexer(argv[1]);
-    if (!tokens)
-		return (1);
-	if (!check_syntax(tokens))
-    {
-        free_tokens(tokens);
-	    return (1);
-    }
-    cmds = parse_tokens(tokens);
-	print_cmds(cmds);
-    free_cmds(cmds);
-    free_tokens(tokens);
 	return (0);
 }
+// int	main (int argc, char** argv)
+// {
+// 	t_token	*tokens;
+//     t_cmd	*cmds;
+
+// 	if (argc != 2)
+// 	{
+// 		ft_printf("Usage: %s \"command\"\n", argv[0]);
+// 		return (1);
+// 	}
+// 	init_signals();
+// 	tokens = lexer(argv[1]);
+//     if (!tokens)
+// 		return (1);
+// 	if (!check_syntax(tokens))
+//     {
+//         free_tokens(tokens);
+// 	    return (1);
+//     }
+//     cmds = parse_tokens(tokens);
+// 	print_cmds(cmds);
+// 	while(1)
+// 	{
+// 		ft_printf("minishell$");
+// 		getline(...)
+// 	}
+//     free_cmds(cmds);
+//     free_tokens(tokens);
+// 	return (0);
+// }
