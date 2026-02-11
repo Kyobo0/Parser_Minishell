@@ -6,7 +6,7 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:25:10 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:16:15 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:41:30 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int	main (int argc, char** argv)
 	print_tokens(tokens);
     if (!tokens)
 		return (1);
-	cmds = parse_tokens(tokens);
+	if (!check_syntax(tokens))
+	    return (1);
+    cmds = parse_tokens(tokens);
 	print_cmds(cmds);
 	return (0);
 }
