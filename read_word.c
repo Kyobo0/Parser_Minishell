@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:40:42 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 18:50:45 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:54:13 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parsing.h"
 
 static char	*append_plain(char *word, char *line, int *i)
 {
@@ -112,7 +112,7 @@ static char	*append_double_quoted(char *word, char *line, int *i)
 	return (word);
 }
 
-char	*read_word(char *line, int *i)
+char	*read_word(char *line, int *i, int *quoted)
 {
 	char	*word;
 
@@ -126,9 +126,15 @@ char	*read_word(char *line, int *i)
 	)
 	{
 		if (line[*i] == '\'')
+		{
+			*quoted = 1;
 			word = append_single_quoted(word, line, i);
+		}
 		else if (line[*i] == '"')
+		{
+			*quoted = 1;
 			word = append_double_quoted(word, line, i);
+		}
 		else if (line[*i] == '$')
 			word = append_variable(word, line, i);
 		else

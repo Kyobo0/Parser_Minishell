@@ -6,11 +6,11 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 10:08:00 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 13:01:42 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:55:45 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parsing.h"
 
 static t_cmd	*cmd_new(void)
 {
@@ -66,6 +66,7 @@ static void	add_redir(t_cmd *cmd, t_token *token)
 	else if (token->type == TOKEN_HEREDOC)
 		redir->type = HEREDOC;
 	redir->target = token->next->value;
+	redir->quoted = token->next->quoted;
 	redir->next = NULL;
 	if (!cmd->redirs)
 		cmd->redirs = redir;

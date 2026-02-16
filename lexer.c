@@ -6,11 +6,11 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 19:41:52 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:10:30 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:52:05 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parsing.h"
 
 t_token	*token_new(t_token_type type, char *value)
 {
@@ -21,6 +21,7 @@ t_token	*token_new(t_token_type type, char *value)
 		return (NULL);
 	token->type = type;
 	token->value = value;
+	token->quoted = 0;
 	token->next = NULL;
 	return (token);
 }

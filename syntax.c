@@ -6,11 +6,11 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 22:38:25 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:40:45 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:04:37 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parsing.h"
 
 static int	check_pipe_error(t_token *tmp)
 {

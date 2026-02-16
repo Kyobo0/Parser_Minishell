@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 16:37:23 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 17:50:11 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 16:54:38 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parsing.h"
 
 void	sigint_handler(int sig)
 {

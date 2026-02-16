@@ -6,11 +6,11 @@
 /*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 23:32:12 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 12:10:30 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:53:02 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parsing.h"
 
 int	is_operator(char c)
 {
@@ -61,10 +61,14 @@ void	handle_output_redir(char *line, int *i, t_token **tokens)
 int	handle_word(char *line, int *i, t_token **tokens)
 {
 	char	*word;
+	int		quoted;
 
-	word = read_word(line, i);
+	quoted = 0;
+	word = read_word(line, i, &quoted);
 	if (!word)
 		return (0);
-	token_add_back(tokens, token_new(TOKEN_WORD, word));
+	t_token *new = token_new(TOKEN_WORD, word);
+	new->quoted = quoted;
+	token_add_back(tokens, new);
 	return (1);
 }

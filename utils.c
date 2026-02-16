@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:22:18 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 17:50:07 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 16:54:38 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parsing.h"
 
 int	ft_isspace(int c)
 {

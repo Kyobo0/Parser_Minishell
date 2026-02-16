@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 19:38:36 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/11 20:07:34 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:57:08 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -34,6 +34,7 @@ typedef struct s_token
 {
 	t_token_type	type;
 	char			*value;
+	int				quoted;
 	struct s_token	*next;
 }	t_token;
 
@@ -49,6 +50,7 @@ typedef struct s_redir
 {
 	t_redir_type	type;
 	char			*target;
+	int				quoted;
 	struct s_redir	*next;
 }	t_redir;
 
@@ -62,7 +64,7 @@ typedef struct s_cmd
 
 extern int	g_exit_status;
 
-char	*read_word(char *line, int *i);
+char	*read_word(char *line, int *i, int *quoted);
 t_token	*token_new(t_token_type type, char *value);
 void	token_add_back(t_token **lst, t_token *new);
 t_token	*lexer(char *line);
