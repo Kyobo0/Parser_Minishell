@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:25:10 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/16 18:07:00 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/20 13:26:07 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
