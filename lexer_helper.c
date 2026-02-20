@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 23:32:12 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/16 17:53:02 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/20 13:21:31 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ int	handle_word(char *line, int *i, t_token **tokens)
 {
 	char	*word;
 	int		quoted;
+	t_token	*new;
 
 	quoted = 0;
 	word = read_word(line, i, &quoted);
 	if (!word)
 		return (0);
-	t_token *new = token_new(TOKEN_WORD, word);
+	new = token_new(TOKEN_WORD, word);
 	new->quoted = quoted;
 	token_add_back(tokens, new);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 10:08:00 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/16 17:55:45 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/20 13:19:11 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	add_arg(t_cmd *cmd, char *value)
 		new_argv[i] = cmd->argv[i];
 		i++;
 	}
-	new_argv[i++] = value;
+	new_argv[i++] = ft_strdup(value);
 	new_argv[i] = NULL;
 	free(cmd->argv);
 	cmd->argv = new_argv;

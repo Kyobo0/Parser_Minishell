@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:22:18 by hudescam          #+#    #+#             */
-/*   Updated: 2026/02/16 16:54:38 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/20 13:21:53 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,18 @@ void	free_redirs(t_redir *redir)
 void	free_cmds(t_cmd *cmd)
 {
 	t_cmd	*tmp;
+	int		i;
 
 	while (cmd)
 	{
 		tmp = cmd->next;
 		if (cmd->argv)
+		{
+			i = 0;
+			while (cmd->argv[i])
+				free(cmd->argv[i++]);
 			free(cmd->argv);
+		}
 		free_redirs(cmd->redirs);
 		free(cmd);
 		cmd = tmp;
