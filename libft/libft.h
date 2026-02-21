@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hudescam <hudescam@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hudescam <hudescam@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:33:23 by hudescam          #+#    #+#             */
-/*   Updated: 2025/10/07 17:49:03 by hudescam         ###   ########.fr       */
+/*   Updated: 2026/02/21 11:51:12 by hudescam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		ft_atoi(const char *nptr);
 int		ft_inputpoint(void *point);
 int		ft_printf(const char *str, ...);
 int		ft_inputunsid(unsigned int deci);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_inputhexa(unsigned long deci, char *base);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
